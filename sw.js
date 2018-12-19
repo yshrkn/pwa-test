@@ -1,6 +1,7 @@
 // キャッシュ名とキャッシュファイルの指定
 const CACHE_NAME = 'pwa-sample-caches';
 const urlsToCache = [
+	'./',
 	'./index.html',
 	'./pages/a.html',
 	'./pages/b.html',
