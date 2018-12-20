@@ -1,6 +1,7 @@
 // キャッシュ名とキャッシュファイルの指定
-var CACHE_NAME = 'pwa-sample-caches';
-var urlsToCache = [
+const CACHE_NAME = 'pwa-sample-caches';
+const urlsToCache = [
+	'./',
 	'./index.html',
 	'./pages/a.html',
 	'./pages/b.html',
@@ -11,23 +12,21 @@ var urlsToCache = [
 	'./images/c.jpg',
 ];
 
-// インストール処理
-self.addEventListener('install', function(event) {
+self.addEventListener('install', (event) => {
 	event.waitUntil(
 		caches
 			.open(CACHE_NAME)
-			.then(function(cache) {
+			.then((cache) => {
 				return cache.addAll(urlsToCache);
 			})
 	);
 });
 
-// リソースフェッチ時のキャッシュロード処理
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', (event) => {
 	event.respondWith(
 		caches
 			.match(event.request)
-			.then(function(response) {
+			.then((response) => {
 				return response ? response : fetch(event.request);
 			})
 	);
